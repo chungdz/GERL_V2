@@ -116,7 +116,8 @@ def train(cfg, epoch, rank, model, loader, optimizer, steps_one_epoch, device):
 
         if ((cfg.training.gpus < 2) or (cfg.training.gpus > 1 and rank == 0)) and ((i+1) % cfg.logger.log_freq == 0):
             # neptune.log_metric("loss", loss.item())
-            print("loss", loss.item())
+            # print("loss", loss.item())
+            pass
 
         if (i + 1) % cfg.training.accumulate == 0:
             if cfg.training.gpus > 1:
