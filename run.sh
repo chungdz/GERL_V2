@@ -11,7 +11,7 @@ python -m src.scripts.build_neighbors
 python -m src.scripts.build_neighbors --type=test
 python -m src.scripts.build_training_examples
 python -m src.scripts.build_eval_examples
-python -m src.scripts.build_test_examples
+python -m src.scripts.build_eval_examples --filet=test
 python -m src.scripts.split_data
 python -m src.scripts.split_data -i L/examples/test_examples.tsv -o L/examples/test_examples
 CUDA_VISIBLE_DEVICES=0,1,2,3 python -m src.train

@@ -34,7 +34,7 @@ def build_examples(cfg, df: pd.DataFrame,
         neighbors = neighbor_dict.get(key, [])
         return neighbors[:max_neighbor_num]
 
-    f_out = os.path.join(ROOT_PATH, "data", cfg.fsize, "examples/eval_examples.tsv")
+    f_out = os.path.join(ROOT_PATH, "data", cfg.fsize, "examples/{}_examples.tsv".format(cfg.filet))
     fw = open(f_out, "w", encoding="utf-8")
 
     random.seed(7)
@@ -82,13 +82,22 @@ def load_hop_dict(fpath: str) -> Dict:
     return d
 
 def main(cfg):
-    f_dev_samples = os.path.join(ROOT_PATH, "data", cfg.fsize, "dev/behaviors.tsv")
-    f_news_vocab = os.path.join(ROOT_PATH, "data", cfg.fvocab, "newsid_vocab.bin")
-    f_user_vocab = os.path.join(ROOT_PATH, "data", cfg.fvocab, "userid_vocab.bin")
-    f_user_one_hop = os.path.join(ROOT_PATH, "data", cfg.fvocab, "train-user_one_hops.txt")
-    f_news_one_hop = os.path.join(ROOT_PATH, "data", cfg.fvocab, "train-news_one_hops.txt")
-    f_user_two_hop = os.path.join(ROOT_PATH, "data", cfg.fvocab, "train-user_two_hops.txt")
-    f_news_two_hop = os.path.join(ROOT_PATH, "data", cfg.fvocab, "train-news_two_hops.txt")
+    if cfg.filet == 'eval':
+        f_dev_samples = os.path.join(ROOT_PATH, "data", cfg.fsize, "dev/behaviors.tsv")
+        f_news_vocab = os.path.join(ROOT_PATH, "data", cfg.fvocab, "newsid_vocab.bin")
+        f_user_vocab = os.path.join(ROOT_PATH, "data", cfg.fvocab, "userid_vocab.bin")
+        f_user_one_hop = os.path.join(ROOT_PATH, "data", cfg.fvocab, "train-user_one_hops.txt")
+        f_news_one_hop = os.path.join(ROOT_PATH, "data", cfg.fvocab, "train-news_one_hops.txt")
+        f_user_two_hop = os.path.join(ROOT_PATH, "data", cfg.fvocab, "train-user_two_hops.txt")
+        f_news_two_hop = os.path.join(ROOT_PATH, "data", cfg.fvocab, "train-news_two_hops.txt")
+    else:
+        f_dev_samples = os.path.join(ROOT_PATH, "data", cfg.fsize, "test/behaviors.tsv")
+        f_news_vocab = os.path.join(ROOT_PATH, "data", cfg.fvocab, "newsid_vocab.bin")
+        f_user_vocab = os.path.join(ROOT_PATH, "data", cfg.fvocab, "userid_vocab.bin")
+        f_user_one_hop = os.path.join(ROOT_PATH, "data", cfg.fvocab, "test-user_one_hops.txt")
+        f_news_one_hop = os.path.join(ROOT_PATH, "data", cfg.fvocab, "test-news_one_hops.txt")
+        f_user_two_hop = os.path.join(ROOT_PATH, "data", cfg.fvocab, "test-user_two_hops.txt")
+        f_news_two_hop = os.path.join(ROOT_PATH, "data", cfg.fvocab, "test-news_two_hops.txt")
 
     # Load vocab
     user_vocab = WordVocab.load_vocab(f_user_vocab)
@@ -110,6 +119,8 @@ if __name__ == "__main__":
     # Path options.
     parser.add_argument("--fsize", default="L", type=str,
                         help="Corpus size")
+    parser.add_argument("--filet", default="eval", type=str,
+                        help="which file")
     parser.add_argument("--fout", default="hop1_cocur_bip_hist50", type=str,
                         help="Path of the output dir.")
     parser.add_argument("--fvocab", default="vocabs", type=str,
