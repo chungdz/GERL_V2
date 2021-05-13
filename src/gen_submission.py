@@ -4,7 +4,7 @@ import scipy.stats as ss
 from src.utils.eval_util import cal_metric
 lines = []
 for i in range(4):
-    lines += open('../data/L/result/split_{}.txt'.format(i), 'r').readlines()
+    lines += open('./data/L/result/split_{}.txt'.format(i), 'r').readlines()
 
 group_preds = {}
 group_labels = {}
