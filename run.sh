@@ -1,7 +1,7 @@
 export GERL=/data/yunfanhu/GERL_V2
-mkdir data
+mkdir data outputs outputs/L outputs/L/base@examples/
 cd data
-mkdir L L/train L/dev L/test L/examples vocabs
+mkdir L L/train L/dev L/test L/examples vocabs 
 cd ..
 
 
