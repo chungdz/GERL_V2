@@ -97,7 +97,7 @@ def build_one_hop_neighbors(cfg, behavior_df: pd.DataFrame, user_vocab: WordVoca
 
 
 def main(cfg):
-    f_train_behaviors = os.path.join(ROOT_PATH, "data", cfg.fsize, "train/behaviors.tsv")
+    f_train_behaviors = os.path.join(ROOT_PATH, "data", cfg.fsize, "{}/behaviors.tsv".format(cfg.type))
     f_news_vocab = os.path.join(ROOT_PATH, "data", cfg.fvocab, "newsid_vocab.bin")
     f_user_vocab = os.path.join(ROOT_PATH, "data", cfg.fvocab, "userid_vocab.bin")
 
@@ -127,6 +127,8 @@ if __name__ == "__main__":
     # Path options.
     parser.add_argument("--fsize", default="L", type=str,
                         help="Corpus size")
+    parser.add_argument("--type", default="train", type=str,
+                        help="which file")
     parser.add_argument("--fvocab", default="vocabs", type=str,
                         help="Path of the training data file.")
     parser.add_argument("--max_user_one_hop", default=50, type=int,
