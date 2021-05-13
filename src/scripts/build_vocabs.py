@@ -16,8 +16,8 @@ import argparse
 import pandas as pd
 import numpy as np
 
-from datasets.vocab import WordVocab
-from utils.build_util import word_tokenize
+from src.datasets.vocab import WordVocab
+from src.utils.build_util import word_tokenize
 
 ROOT_PATH = os.environ["GERL"]
 

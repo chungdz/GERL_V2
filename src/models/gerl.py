@@ -20,8 +20,8 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from modules.self_attend import SelfAttendLayer
-from modules.title_encoder import TitleEncoder
+from src.modules.self_attend import SelfAttendLayer
+from src.modules.title_encoder import TitleEncoder
 
 
 class Model(nn.Module):

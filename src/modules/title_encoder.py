@@ -8,9 +8,9 @@ import numpy as np
 import torch
 import torch.nn as nn
 
-from datasets.vocab import WordVocab
-from modules.self_attend import SelfAttendLayer
-from utils.model_util import build_embedding_layer
+from src.datasets.vocab import WordVocab
+from src.modules.self_attend import SelfAttendLayer
+from src.utils.model_util import build_embedding_layer
 
 
 class TitleEncoder(nn.Module):

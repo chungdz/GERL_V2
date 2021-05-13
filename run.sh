@@ -1,6 +1,9 @@
-export GERL=/path/to/GERL
+export GERL=/data/yunfanhu/GERL_V2
+mkdir data
 cd data
 mkdir train dev test vocabs
+cd ..
+
 
 python -m src.scripts.build_train_samples.py
 python -m src.scripts.build_vocabs.py

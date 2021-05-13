@@ -22,7 +22,7 @@ import pandas as pd
 import numpy as np
 from tqdm import tqdm
 
-from datasets.vocab import WordVocab
+from src.datasets.vocab import WordVocab
 
 ROOT_PATH = os.environ["GERL"]
 

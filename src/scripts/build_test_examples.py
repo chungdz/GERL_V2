@@ -19,7 +19,7 @@ from typing import List, Dict
 import tqdm
 import pandas as pd
 
-from datasets.vocab import WordVocab
+from src.datasets.vocab import WordVocab
 
 random.seed(7)
 ROOT_PATH = os.environ["GERL"]

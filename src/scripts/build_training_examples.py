@@ -10,7 +10,7 @@ from typing import List, Dict
 
 import tqdm
 
-from datasets.vocab import WordVocab
+from src.datasets.vocab import WordVocab
 
 random.seed(7)
 ROOT_PATH = os.environ["GERL"]

@@ -16,14 +16,14 @@ import torch.distributed as dist
 import torch.multiprocessing as mp
 from torch.utils.data import DataLoader
 
-from datasets.dataset import TrainingDataset
-from datasets.dataset import ValidationDataset
-from models.gerl import Model
+from src.datasets.dataset import TrainingDataset
+from src.datasets.dataset import ValidationDataset
+from src.models.gerl import Model
 # from utils.log_util import convert_omegaconf_to_dict
-from utils.train_util import set_seed
-from utils.train_util import save_checkpoint_by_epoch
-from utils.eval_util import group_labels
-from utils.eval_util import cal_metric
+from src.utils.train_util import set_seed
+from src.utils.train_util import save_checkpoint_by_epoch
+from src.utils.eval_util import group_labels
+from src.utils.eval_util import cal_metric
 
 
 def run(cfg: DictConfig, rank: int, device: torch.device, corpus_path: str):
