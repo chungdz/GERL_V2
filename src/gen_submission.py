@@ -2,7 +2,9 @@ import pandas as pd
 import numpy as np
 import scipy.stats as ss
 from src.utils.eval_util import cal_metric
-lines = open('../data/L/result/all_pred.result', 'r').readlines()
+lines = []
+for i in range(4):
+    lines += open('../data/L/result/split_{}.txt'.format(i), 'r').readlines()
 
 group_preds = {}
 group_labels = {}
