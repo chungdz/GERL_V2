@@ -24,6 +24,7 @@ from src.utils.train_util import set_seed
 from src.utils.train_util import save_checkpoint_by_epoch
 from src.utils.eval_util import group_labels
 from src.utils.eval_util import cal_metric
+from src.gather import gather
 
 
 def run(cfg: DictConfig, rank: int, device: torch.device, corpus_path: str):
@@ -86,11 +87,13 @@ def validate(cfg, rank, model, valid_data_loader, device):
             preds += pred.cpu().numpy().tolist()
             truths += data["y"].long().cpu().numpy().tolist()
 
-        result_file_path = os.path.join(cfg.dataset.result_path, "split_{}.txt".format(rank))
+        tmp_dict = {}
+        tmp_dict['imp'] = imp_ids
+        tmp_dict['labels'] = truths
+        tmp_dict['preds'] = preds
 
-        with open(result_file_path, 'w', encoding='utf-8') as f:
-            for imp_id, truth, pred in zip(imp_ids, truths, preds):
-                f.write("{}\t{}\t{}\n".format(imp_id, truth, pred))
+        with open(cfg.dataset.result_path + 'tmp_{}.json'.format(rank), 'w', encoding='utf-8') as f:
+            json.dump(tmp_dict, f)
 
 
 def init_processes(cfg, local_rank, dataset, fn, backend='nccl'):
@@ -136,6 +139,8 @@ def main(cfg):
 
         for p in processes:
             p.join()
+        
+        gather(cfg.dataset.result_path, cfg.training.gpus, validate=True, save=False)
 
 
 if __name__ == '__main__':

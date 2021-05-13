@@ -18,6 +18,7 @@ for l in lines:
     group_preds[row[0]].append(float(row[-1]))
     group_labels[row[0]].append(int(row[1]))
 
+all_keys = group_labels.keys()
 all_labels = []
 all_preds = []
 for k in all_keys:
