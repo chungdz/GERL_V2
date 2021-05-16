@@ -14,8 +14,8 @@ dataset:
   title_embedding: ${env:GERL}/data/${dataset.size}/news_title.npy
   max_news_len: 20
   max_user_one_hop: 30
-  max_user_two_hop: 15
-  max_news_two_hop: 15
+  max_user_two_hop: 5
+  max_news_two_hop: 5
   user_count: 900000
   news_count: 140000
   train_split_cnt: 40

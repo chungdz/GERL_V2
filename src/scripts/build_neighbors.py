@@ -135,9 +135,9 @@ if __name__ == "__main__":
                         help="Maximum number of user one-hop neighbors.")
     parser.add_argument("--max_news_one_hop", default=30, type=int,
                         help="Maximum number of news one-hop neighbors.")
-    parser.add_argument("--max_user_two_hop", default=15, type=int,
+    parser.add_argument("--max_user_two_hop", default=5, type=int,
                         help="Maximum number of user two-hop neighbors.")
-    parser.add_argument("--max_news_two_hop", default=15, type=int,
+    parser.add_argument("--max_news_two_hop", default=5, type=int,
                         help="Maximum number of news two-hop neighbors.")
 
     args = parser.parse_args()

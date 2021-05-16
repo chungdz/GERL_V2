@@ -14,6 +14,6 @@ python -m src.scripts.build_eval_examples
 python -m src.scripts.build_eval_examples --filet=test
 python -m src.scripts.split_data
 python -m src.scripts.split_data -i L/examples/test_examples.tsv -o L/examples/test_examples
-CUDA_VISIBLE_DEVICES=0,1,2,3 python -m src.train
+CUDA_VISIBLE_DEVICES=0,1,2,3 python -m src.train training.learning_rate=0.001
 CUDA_VISIBLE_DEVICES=0,1,2,3 python -m src.test training.validate_epoch=6
 python -m src.gen_submission 
