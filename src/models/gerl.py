@@ -109,7 +109,7 @@ class Model(nn.Module):
     def training_step(self, batch_data):
         # REQUIRED
         user, hist_news, neighbor_users, target_news, neighbor_news = self._arrange_input(batch_data)
-        logits = self.forward(user, hist_news, neighbor_users, target_news, neighbor_news, 5)
+        logits = self.forward(user, hist_news, neighbor_users, target_news, neighbor_news, self.neg_count + 1)
 
         target = batch_data["y"]
         loss = F.cross_entropy(logits, target)
