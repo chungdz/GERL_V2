@@ -96,10 +96,10 @@ class Model(nn.Module):
         # final_user_rep = final_user_rep.repeat(1, target_news_cnt).view(-1, self.embedding_size * 3)
         # final_target_reps = torch.cat([news_two_hop_title_reps, news_two_hop_id_reps, target_news_reps], dim=-1)
         # final_target_reps = final_target_reps.view(-1, self.embedding_size * 3)
-        final_user_rep = torch.cat([user_one_hop_rep, user_embedding], dim=-1)
-        final_user_rep = final_user_rep.repeat(1, target_news_cnt).view(-1, self.embedding_size * 2)
-        final_target_reps = torch.cat([target_news_reps, news_two_hop_title_reps], dim=-1)
-        final_target_reps = final_target_reps.view(-1, self.embedding_size * 2)
+        final_user_rep = user_one_hop_rep + user_embedding
+        final_user_rep = final_user_rep.repeat(1, target_news_cnt).view(-1, self.embedding_size)
+        final_target_reps = target_news_reps + news_two_hop_title_reps
+        final_target_reps = final_target_reps.view(-1, self.embedding_size)
 
         logits = torch.sum(final_user_rep * final_target_reps, dim=-1)
         logits = logits.view(-1, target_news_cnt)

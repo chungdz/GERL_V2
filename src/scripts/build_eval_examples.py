@@ -125,9 +125,9 @@ if __name__ == "__main__":
                         help="Path of the output dir.")
     parser.add_argument("--fvocab", default="vocabs", type=str,
                         help="Path of the output dir.")
-    parser.add_argument("--max_user_one_hop", default=20, type=int,
+    parser.add_argument("--max_user_one_hop", default=50, type=int,
                         help="Maximum number of user one-hop neighbors.")
-    parser.add_argument("--max_news_one_hop", default=20, type=int,
+    parser.add_argument("--max_news_one_hop", default=50, type=int,
                         help="Maximum number of news one-hop neighbors.")
     parser.add_argument("--max_user_two_hop", default=15, type=int,
                         help="Maximum number of user two-hop neighbors.")
