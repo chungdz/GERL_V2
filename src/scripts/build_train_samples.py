@@ -53,7 +53,7 @@ if __name__ == "__main__":
     # Path options.
     parser.add_argument("--fsize", default="L", type=str,
                         help="Corpus size")
-    parser.add_argument("--neg_count", default=4, type=int,
+    parser.add_argument("--neg_count", default=5, type=int,
                         help="Max neg samples according to one pos sample.")
 
     args = parser.parse_args()

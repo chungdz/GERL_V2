@@ -6,7 +6,7 @@ model:
   conv_hidden_size: 300
   hidden_size: 300
   dropout: 0.2
-  neg_count: 4
+  neg_count: 5
   transformer:
     heads_num: 8
     head_size: 16
