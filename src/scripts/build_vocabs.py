@@ -88,32 +88,16 @@ def build_newsid_to_title(cfg, news_df: pd.DataFrame, newsid_vocab: WordVocab, w
 def main(cfg):
     # Build vocab
     print("Loading news info")
-    f_train_news = os.path.join(ROOT_PATH, "data", cfg.fsize, "train/news.tsv")
-    f_dev_news = os.path.join(ROOT_PATH, "data", cfg.fsize, "dev/news.tsv")
-    f_test_news = os.path.join(ROOT_PATH, "data", cfg.fsize, "test/news.tsv")
-
-    print("Loading training news")
+    f_train_news = os.path.join(ROOT_PATH, "data", cfg.fsize, "news.tsv")
     train_news = pd.read_csv(f_train_news, sep="\t", encoding="utf-8",
                            names=["newsid", "cate", "subcate", "title", "abs", "url", "title_ents", "abs_ents"],
                            quoting=3)
-    if os.path.exists(f_dev_news):
-        print("Loading dev news")
-        dev_news = pd.read_csv(f_dev_news, sep="\t", encoding="utf-8",
-                               names=["newsid", "cate", "subcate", "title", "abs", "url", "title_ents", "abs_ents"],
-                               quoting=3)
-    if os.path.exists(f_test_news):
-        print("Loading testing news")
-        test_news = pd.read_csv(f_test_news, sep="\t", encoding="utf-8",
-                                names=["newsid", "cate", "subcate", "title", "abs", "url", "title_ents", "abs_ents"],
-                                quoting=3)
-
-    all_news = pd.concat([train_news, dev_news, test_news], ignore_index=True)
-    all_news = all_news.drop_duplicates("newsid")
+    all_news = train_news
     print("All news: {}".format(len(all_news)))
 
     # 单独处理train news
     train_news['title_token'] = train_news['title'].apply(lambda x: ' '.join(word_tokenize(x)))
-    all_news['title_token'] = all_news['title'].apply(lambda x: ' '.join(word_tokenize(x)))
+    # all_news['title_token'] = all_news['title'].apply(lambda x: ' '.join(word_tokenize(x)))
 
     # Build user id vocab
     f_train_behaviors = os.path.join(ROOT_PATH, "data", cfg.fsize, "train/behaviors.tsv")
